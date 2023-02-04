@@ -1,86 +1,6 @@
-// for (let i = 1; i <= 8; i++) {
-//     if (i === 5) {
-//         continue;
-//     }
-//     console.log(i)
-// }
-
-
-// }
-// for (let i = 1; i < 7; i++) {
-//     for (let j = 6; j > i; j--) {
-//         result += '*'
-//     }
-//     result += '\n'
-// }
-// console.log(result)
-
-// let result = ''
-// const length = 5
-
-// for (let i = 0; i <= length; i++) {
-//     for (let j = 0; j < length - i; j++) {
-//         result += " "
-//     }
-//     for (let j = 0; j < 2 * i + 10; j++) {
-//         result += "*"
-//     }
-//     result += "\n"
-// }
-// console.log(result)
-
-//       *
-//      ***
-//     *****
-//    *******
-//   *********
-//  ***********
-
-// let result = ''
-// const lenght = 13
-
-// for (let i = 1; i < 7; i++) {
-//     for (let j = 0; j < i; j++) {
-//         result += '*'
-//     }
-//     result += '\n'
-//     console.log(result)
-// }
-
-
-// for (let i = 20; i > 10; i--) {
-//     if (i === 12)  {
-//          break
-//      }
-//     console.log(i)
-// }
-
-// for (let i = 2; i <= 10; i++) {
-//     if (i % 2 == 0)
-//     console.log(i)
-// }
-
-// for (let i = 2; i <= 16; i++) {
-//     if (i % 2 === 0) {
-//     continue;
-//     }
-//     console.log(i);
-// }
-
-// let i = 2
-// while (i <= 16) {
-//     if (i % 2 == 0) {
-//         i++
-//         continue;
-//     }
-//     else {
-//         console.log(i)
-//     }
-//     i++
-// }
 'use strict'
 
-let countOfMovie = ''
+let countOfMovie = ""
 const personalMovieDB = {
     count: countOfMovie,
     movies: {},
@@ -90,7 +10,7 @@ const personalMovieDB = {
 },
 button = document.getElementById('#click')
 button.addEventListener('click', () => {
-    countOfMovie = +prompt('Сколько фильмов вы просмотрели?', '');
+    countOfMovie = +prompt('Сколько фильмов вы просмотрели?', "");
     for (let i = 0; i < 2; i++) {
         const nameOfLastMovie = prompt('Один из последних просмотренных фильмов?', ''),
               rateOfLastMovie = +prompt('На сколько оцените его?', '');
@@ -102,6 +22,8 @@ button.addEventListener('click', () => {
         i--;
         }
     }
+    writeYourGenres();
+    showMyDB();
 })
 if (personalMovieDB.count < 10) {
     console.log('Просмотренно довольно-таки мало фильмов')
@@ -112,11 +34,14 @@ if (personalMovieDB.count < 10) {
 } else if (personalMovieDB.count == 0) {
     console.log('Ошибка!')
 }
-console.log(personalMovieDB)
 
-
-
-
-
-
-    
+function writeYourGenres() {
+    for (let i = 1; i <= 3; i++) {
+        personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр фильма под номером ${i}`)
+    }
+}
+function showMyDB (hidden) {
+    if (!hidden) {
+        console.log(personalMovieDB);
+    }
+}
