@@ -1,19 +1,24 @@
 'use strict'
+let countOfMovie;
 
-let countOfMovie = ""
+const button = document.getElementById('#click')
+button.addEventListener('click', () => {
+    countOfFilms();
 const personalMovieDB = {
     count: countOfMovie,
     movies: {},
     actors: {},
     genres: [],
     privat: false
-},
-button = document.getElementById('#click')
-button.addEventListener('click', () => {
-    countOfMovie = +prompt('Сколько фильмов вы просмотрели?', "");
+};
+checkOnLastFilm();
+writeYourGenres();
+checkUrLevel();
+showMyDB(personalMovieDB.privat);
+function checkOnLastFilm() {
     for (let i = 0; i < 2; i++) {
-        const nameOfLastMovie = prompt('Один из последних просмотренных фильмов?', ''),
-              rateOfLastMovie = +prompt('На сколько оцените его?', '');
+        const nameOfLastMovie = prompt('Один из последних просмотренных фильмов?', '').trim(),
+              rateOfLastMovie = +prompt('На сколько оцените его?', '').trim();
         if (nameOfLastMovie != null && rateOfLastMovie != null && nameOfLastMovie != '' && rateOfLastMovie != '' && nameOfLastMovie.length < 50) {
         personalMovieDB.movies[nameOfLastMovie] = rateOfLastMovie;
         console.log('Correctly');
@@ -22,17 +27,25 @@ button.addEventListener('click', () => {
         i--;
         }
     }
-    writeYourGenres();
-    showMyDB();
-})
-if (personalMovieDB.count < 10) {
-    console.log('Просмотренно довольно-таки мало фильмов')
-} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
-    console.log('Вы классический зритель!')
-} else if (personalMovieDB.count >= 30 ) {
-    console.log ('Сударь, да вы являетесь продвинутым киноманом')
-} else if (personalMovieDB.count == 0) {
-    console.log('Ошибка!')
+}
+
+function countOfFilms () {
+    countOfMovie = +prompt('Сколько фильмов вы просмотрели?', '');
+    while (countOfMovie == '' || countOfMovie == null || isNaN(countOfMovie)) {
+        countOfMovie = +prompt('Сколько фильмов вы просмотрели?', '');
+    }
+}
+
+function checkUrLevel () {
+    if (personalMovieDB.count < 10) {
+        console.log('Просмотренно довольно-таки мало фильмов')
+    } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+        console.log('Вы классический зритель!')
+    } else if (personalMovieDB.count >= 30 ) {
+        console.log ('Сударь, да вы являетесь продвинутым киноманом')
+    } else if (personalMovieDB.count == 0) {
+        console.log('Ошибка!')
+    }
 }
 
 function writeYourGenres() {
@@ -45,3 +58,10 @@ function showMyDB (hidden) {
         console.log(personalMovieDB);
     }
 }
+})
+
+
+
+
+
+

@@ -24,3 +24,11 @@
 .container .moscowbutton:hover {
     background: rgb(92, 1, 1);
 }
+
+.dvadva {
+    cursor: pointer;
+}
+
+.dvadva:active {
+    transform: scale(0.1);
+}
